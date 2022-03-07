@@ -1,12 +1,12 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js";
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-analytics.js";
-import { getDatabase } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-database.js";
-import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-auth.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-app.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-analytics.js";
+import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-database.js";
+import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-auth.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyC5k1b2Snd92Bot_kSMQy6-eonm88KjprA",
     authDomain: "github-site-authentication.firebaseapp.com",
-    databaseURL: "https://github-site-authentication-default-rtdb.europe-west1.firebasedatabase.app",
+    databaseURL: "https://github-site-authentication-default-rtdb.europe-west1.firebasedatabase.app/",
     projectId: "github-site-authentication",
     storageBucket: "github-site-authentication.appspot.com",
     messagingSenderId: "49314878365",
@@ -29,6 +29,11 @@ document.getElementById("signup_button").addEventListener("click", (e) => {
     .then((userCredential) => {
         // Signed in 
         const user = userCredential.user;
+
+        set(ref(database, "users/" + user.uid), {
+            username: username,
+            email: email
+        });
 
         window.location.href = "index.html";
         // ...
