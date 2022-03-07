@@ -2,10 +2,82 @@
 
 <html>
     <head>
-        <title>RizzoGR</title>
+        <title>RizzoGR - Home Page</title>
+        <meta charset="UTF-8">
         <link rel="stylesheet" href="style/index.css">
+        <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     </head>
     <body>
-        
+        <div class="sidebar">
+
+            <div class="logo_content">
+                <div class="logo">
+                    <i class='bx bx-data'></i>
+                    <div class="logo_name">RizzoGR</div>
+                </div>
+                <i class='bx bx-menu' id="btn"></i>
+            </div>
+
+            <ul class="nav_list">
+
+                <li>
+                    <i class='bx bx-search' ></i>
+                    <input type="text" placeholder="Search...">
+                </li>
+
+                <li>
+                    <a href="#">
+                        <i class='bx bx-grid-alt' ></i>
+                        <span class="links_name">Dashboard</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <i class='bx bx-user' ></i>
+                        <span class="links_name">User</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <i class='bx bxl-github' ></i>
+                        <span class="links_name">GitHub</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <i class='bx bx-cog' ></i>
+                        <span class="links_name">Settings</span>
+                    </a>
+                </li>
+
+            </ul>
+
+            <div class="profile_content">
+                <div class="profile">
+                    <div class="profile_details">
+                        <img src="profile.jpg" alt="">
+                        <div class="name_job">
+                            <div class="name" id="name"></div>
+                            <div class="job" id="job"></div>
+                        </div>
+                    </div>
+                    <div class="log">
+                        <a class="page_button"><i class="bx bx-log-out" id="log_out"></i></a>
+                        <a href="login.html" class="page_button"><i class="bx bx-log-in" id="log_in"></i></a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="home_content">
+            <div class="text">Home</div>
+        </div>
+
+        <script type="module" src="script/index.js"></script>
+
     </body>
 </html>
