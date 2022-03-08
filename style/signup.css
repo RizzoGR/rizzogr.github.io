@@ -38,19 +38,36 @@ body {
     font-size: 40px;
 }
 
-.username {
+.name {
     position: relative;
     top: 28%;
     left: calc((100% - 500px) / 2);
     width: 500px;
     height: 45px;
+    display: inline-block;
 }
 
-.username input {
+.name #username {
     position: absolute;
     height: 100%;
-    width: 100%;
+    width: 48%;
     left: 0;
+    top: 0;
+    border-radius: 12px;
+    outline-style: none;
+    border: none;
+    background: #1d1b31;
+    padding-left: 50px;
+    font-size: 18px;
+    color: #fff;
+    transition: all 0.5s ease;
+}
+
+.name #displayname {
+    position: absolute;
+    height: 100%;
+    width: 48%;
+    left: 52%;
     top: 0;
     border-radius: 12px;
     outline-style: none;
@@ -64,7 +81,7 @@ body {
 
 .email {
     position: relative;
-    top: 32%;
+    top: 31%;
     left: calc((100% - 500px) / 2);
     width: 500px;
     height: 45px;
@@ -88,7 +105,7 @@ body {
 
 .password {
     position: relative;
-    top: 36%;
+    top: 35%;
     left: calc((100% - 500px) / 2);
     width: 500px;
     height: 45px;

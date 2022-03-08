@@ -22,6 +22,7 @@ const auth = getAuth();
 document.getElementById("signup_button").addEventListener("click", (e) => {
 
     var username = document.getElementById("username").value;
+    var displayname = document.getElementById("displayname").value;
     var email = document.getElementById("email").value;
     var password = document.getElementById("password").value;
 
@@ -32,11 +33,13 @@ document.getElementById("signup_button").addEventListener("click", (e) => {
 
         set(ref(database, "users/" + user.uid), {
             username: username,
-            email: email
+            email: email,
+            displayname: displayname,
+            userimage: "not_set"
+        }).then(() => {
+            window.location.href = "index.html";
         });
-
-        window.location.href = "index.html";
-        // ...
+            // ...
     })
     .catch((error) => {
         const errorCode = error.code;

@@ -19,6 +19,11 @@ const analytics = getAnalytics(app);
 const database = getDatabase(app);
 const auth = getAuth();
 
+let showing_alert = false;
+
+let alert = document.getElementById("error_alert");
+let error_text = document.getElementById("error_text");
+
 document.getElementById("login_button").addEventListener("click", (e) => {
 
     var email = document.getElementById("email").value;
@@ -36,7 +41,25 @@ document.getElementById("login_button").addEventListener("click", (e) => {
         const errorCode = error.code;
         const errorMessage = error.message;
 
-        alert(errorMessage);
+        if (showing_alert == false) {
+            showing_alert = true;
+            alert.classList.toggle("showing");
+
+            setTimeout(() => {
+                alert.classList.toggle("showing");
+                showing_alert = false;
+            }, 4000);
+        }
+
+        if (errorMessage == "Firebase: Error (auth/wrong-password).") {
+            error_text.innerHTML = "Wrong password!";
+        } else if (errorMessage == "Firebase: Error (auth/invalid-email).") {
+            error_text.innerHTML = "Invalid E-mail!";
+        } else if (errorMessage == "Firebase: Error (auth/user-not-found).") {
+            error_text.innerHTML = "User not found!";
+        }
+
+        console.log(errorMessage);
     });
 });
 
@@ -45,6 +68,19 @@ onAuthStateChanged(auth, (user) => {
     if (user) {
         // User is signed in
         const uid = user.uid;
+
+        const userdata = ref(database, "users/" + user.uid)
+        onValue(userdata, (snapshot) => {
+            const data = snapshot.val();
+            console.log(data);
+
+            update(ref(database, "users/" + user.uid), {
+                username: data.username,
+                email: data.email,
+                displayname: data.displayname,
+                userimage: data.userimage
+            });
+        });
     } else {
         // User is signed out
     }

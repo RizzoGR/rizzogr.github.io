@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-analytics.js";
-import { getDatabase } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-database.js";
+import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-database.js";
 import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-auth.js";
 
 const firebaseConfig = {
@@ -30,6 +30,10 @@ let login = document.querySelector("#log_in");
 let user_name = document.getElementById("name");
 let user_job = document.getElementById("job");
 
+let user_image = document.getElementById("user_image");
+
+let login_button = document.getElementById("log_in");
+
 btn.onclick = function() {
     sidebar.classList.toggle("active");
 }
@@ -57,8 +61,29 @@ onAuthStateChanged(auth, (user) => {
         // User is signed in
         const uid = user.uid;
         log.classList.toggle("logged");
+        
+        const userdata = ref(database, "users/" + user.uid)
+        onValue(userdata, (snapshot) => {
+            const data = snapshot.val()
+            console.log(data);
+
+            user_name.innerHTML = data.displayname;
+            user_job.innerHTML = data.username;
+
+            if (data.userimage == "not_set") {
+                user_image.classList.toggle("not_set");
+            } else {
+                user_image.style.backgroundImage = "ciao.jpg";
+            }
+        });
     } else {
         // User is signed out
         console.log("not logged");
+
+        user_image.style.width = "0";
+        login_button.style.left = "47%"
+
+        user_name.innerHTML = "";
+        user_job.innerHTML = "";
     }
 });
