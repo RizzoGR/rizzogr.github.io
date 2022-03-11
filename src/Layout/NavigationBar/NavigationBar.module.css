@@ -1,0 +1,46 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.navigationBar {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    background-color: cadetblue;
+    height: 65px;
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 3px 3px 10px #3d3d3d65;
+}
+
+.navigationBarTitle {
+    position: relative;
+    top: calc((100% - 27px) / 2);
+    left: 17.5px;
+    font-family: "Cascadia Code";
+    font-size: 27px;
+    color: wheat;
+}
+
+.navigationBarButton {
+    position: absolute;
+    top: calc((100% - 35px) / 2);
+    right: 17.5px;
+    background-color: transparent;
+    font-family: "Cascadia Code";
+    font-size: 17px;
+    font-weight: 700;
+    height: 35px;
+    width: 110px;
+    border-radius: 17.5px;
+    border: 2px solid white;
+    color: wheat;
+    transition: all 0.5s ease;
+}
+
+.navigationBarButton:hover {
+    color: cadetblue;
+    background-color: wheat;
+    box-shadow: 3px 3px 10px #3d3d3d65;
+}
